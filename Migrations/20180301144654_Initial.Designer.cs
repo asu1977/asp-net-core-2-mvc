@@ -11,7 +11,7 @@ using System;
 namespace suppliers.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180228095651_Initial")]
+    [Migration("20180301144654_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

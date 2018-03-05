@@ -1,9 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using suppliers.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace suppliers
 {
@@ -126,7 +124,7 @@ namespace suppliers
                         Description = "Водка",
                         Category = "Водка",
                         Price = 366,
-                        Supplier = supplier1,
+                        Supplier = supplier3,
                         Ratings = new List<Rating>
                         {
                             new Rating {Stars = 5}, new Rating {Stars = 5}
@@ -137,12 +135,13 @@ namespace suppliers
                         Description = "Водка",
                         Category = "Водка",
                         Price = 352,
-                        Supplier = supplier1,
+                        Supplier = supplier3,
                         Ratings = new List<Rating>
                         {
                             new Rating {Stars = 5}, new Rating {Stars = 5}
                         }
                     });
+                context.SaveChanges();
             }
 
         }

@@ -9,28 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
-var repository_1 = require("./models/repository");
-var AppComponent = /** @class */ (function () {
-    function AppComponent(repo) {
-        this.repo = repo;
+var Repository = /** @class */ (function () {
+    function Repository(http) {
+        this.http = http;
+        //this.product = JSON.parse(document.getElementById("data").textContent);
+        this.getProduct(1);
     }
-    Object.defineProperty(AppComponent.prototype, "product", {
-        get: function () {
-            return this.repo.product;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'app-root',
-            templateUrl: './app.component.html',
-            styleUrls: ['./app.component.css']
-        }),
-        __metadata("design:paramtypes", [repository_1.Repository])
-    ], AppComponent);
-    return AppComponent;
+    Repository.prototype.getProduct = function (id) {
+        var _this = this;
+        this.http.get("/api/products/" + id)
+            .subscribe(function (response) { return _this.product = response.json(); });
+    };
+    Repository = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], Repository);
+    return Repository;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.Repository = Repository;
+//# sourceMappingURL=repository.js.map
