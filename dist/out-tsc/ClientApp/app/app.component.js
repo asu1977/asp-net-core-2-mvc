@@ -17,7 +17,16 @@ var AppComponent = /** @class */ (function () {
     }
     Object.defineProperty(AppComponent.prototype, "product", {
         get: function () {
+            //console.log(this.repo.product);
             return this.repo.product;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AppComponent.prototype, "products", {
+        get: function () {
+            console.log(this.repo.products);
+            return this.repo.products;
         },
         enumerable: true,
         configurable: true

@@ -67,7 +67,7 @@ namespace suppliers
                         Supplier = supplier2,
                         Ratings = new List<Rating>
                         {
-                            new Rating {Stars = 3}, new Rating {Stars = 4}
+                            new Rating {Stars = 3}
                         }
                     },
                     new Product
@@ -79,7 +79,7 @@ namespace suppliers
                         Supplier = supplier2,
                         Ratings = new List<Rating>
                         {
-                            new Rating {Stars = 3}, new Rating {Stars = 4}
+                            new Rating {Stars = 3}
                         }
                     },
                     new Product
@@ -91,7 +91,7 @@ namespace suppliers
                         Supplier = supplier2,
                         Ratings = new List<Rating>
                         {
-                            new Rating {Stars = 3}, new Rating {Stars = 4}
+                            new Rating {Stars = 3}
                         }
                     },
                     new Product
@@ -127,7 +127,7 @@ namespace suppliers
                         Supplier = supplier3,
                         Ratings = new List<Rating>
                         {
-                            new Rating {Stars = 5}, new Rating {Stars = 5}
+                            new Rating {Stars = 5}, new Rating {Stars = 5}, new Rating {Stars = 4}
                         }
                     }, new Product
                     {

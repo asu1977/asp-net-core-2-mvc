@@ -49,9 +49,23 @@ namespace suppliers.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Product> GetProducts(bool related = false)
+        public IEnumerable<Product> GetProducts(string category, string search, bool related = false)
         {
             IQueryable<Product> query = context.Products;
+
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                string catLower = category.ToLower();
+                query = query.Where(p => p.Category.ToLower().Contains(catLower));
+            }
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                string searchLower = search.ToLower();
+                query = query.Where(p => p.Name.ToLower().Contains(searchLower)
+                    || p.Description.ToLower().Contains(searchLower));
+            }
+
             if (related)
             {
                 query = query.Include(p => p.Supplier).Include(p => p.Ratings);
