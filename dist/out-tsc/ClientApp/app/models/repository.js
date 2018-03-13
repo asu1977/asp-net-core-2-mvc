@@ -14,12 +14,14 @@ var core_1 = require("@angular/core");
 require("rxjs/add/operator/map");
 var cofigClasses_repository_1 = require("./cofigClasses.repository");
 var productsUrl = "/api/products";
+var suppliersUrl = "/api/suppliers";
 var Repository = /** @class */ (function () {
     function Repository(http) {
         this.http = http;
+        this.suppliers = [];
         this.filterObject = new cofigClasses_repository_1.Filter();
         this.getProduct(1);
-        this.filter.category = "Вино";
+        //this.filter.category = "Вино";
         this.filter.related = true;
         this.getProducts();
     }
@@ -41,6 +43,39 @@ var Repository = /** @class */ (function () {
         }
         this.sendRequest(http_1.RequestMethod.Get, url)
             .subscribe(function (response) { return _this.products = response; });
+    };
+    Repository.prototype.getSuppliers = function () {
+        var _this = this;
+        this.sendRequest(http_1.RequestMethod.Get, suppliersUrl)
+            .subscribe(function (response) { return _this.suppliers = response; });
+    };
+    Repository.prototype.createProduct = function (prod) {
+        var _this = this;
+        var data = {
+            name: prod.name, category: prod.category,
+            description: prod.description, price: prod.price,
+            supplier: prod.supplier ? prod.supplier.supplierId : 0
+        };
+        this.sendRequest(http_1.RequestMethod.Post, productsUrl, data)
+            .subscribe(function (response) {
+            prod.productId = response;
+            _this.products.push(prod);
+        });
+    };
+    Repository.prototype.createProductAndSupplier = function (prod, supp) {
+        var _this = this;
+        var data = {
+            name: supp.name, city: supp.city, adrress: supp.address
+        };
+        this.sendRequest(http_1.RequestMethod.Post, suppliersUrl, data)
+            .subscribe(function (response) {
+            supp.supplierId = response;
+            prod.supplier = supp;
+            _this.suppliers.push(supp);
+            if (prod != null) {
+                _this.createProduct(prod);
+            }
+        });
     };
     Repository.prototype.sendRequest = function (verb, url, data) {
         return this.http.request(new http_1.Request({

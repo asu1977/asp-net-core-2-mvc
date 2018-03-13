@@ -25,4 +25,11 @@
         <td>{{product.supplier?.name || 'None'}}</td>
         <td>{{product.ratings?.length || 0}}</td>
     </tr>
-</table> 
+</table>
+<br />
+<button class="btn btn-primary m-1" (click)="createProduct()">
+    Дабавить товар
+</button>
+<button class="btn btn-primary m-1" (click)="createProductAndSupplier()">
+    Добавить товар и постовщика
+</button>
