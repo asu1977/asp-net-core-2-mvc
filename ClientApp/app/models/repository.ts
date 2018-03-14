@@ -69,7 +69,7 @@ export class Repository {
 
     createProductAndSupplier(prod: Product, supp: Supplier) {
         let data = {
-            name: supp.name, city: supp.city, adrress: supp.address
+            name: supp.name, city: supp.city, address: supp.address
         };
 
         this.sendRequest(RequestMethod.Post, suppliersUrl, data)
